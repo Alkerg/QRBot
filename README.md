@@ -1,2 +1,2 @@
 # QRBot
-A discord bot that can read and creat QR codes
+A discord bot that can read and create QR codes
