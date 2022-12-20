@@ -4,7 +4,7 @@ import qrcode
 import datetime
 import io
 import asyncio
-import cv2
+#import cv2
 import urllib.request
 import numpy as np
 import os
