@@ -6,4 +6,3 @@ opencv-python==4.6.0.66
 Pillow==9.3.0
 python-dotenv==0.21.0
 # Editable install with no version control (qrcode==7.3.1)
--e c:\users\albert\appdata\local\programs\python\python310\lib\site-packages\qrcode-7.3.1-py3.10.egg-info
