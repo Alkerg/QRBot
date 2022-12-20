@@ -17,7 +17,6 @@ load_dotenv()
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='-', description='I can generate and read QR codes', intents=intents)
 
-
 #COMMANDS
 @bot.command()
 async def ping(ctx):
