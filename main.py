@@ -35,7 +35,7 @@ async def generateqr(ctx,*,message):
         embed.set_image(url="attachment://qr.png")
 
         await ctx.send(embed=embed,file=image)
-
+"""
 #EVENTS
 @bot.event
 async def on_message(message):
@@ -55,7 +55,7 @@ async def scan_qr(message):
         val,points,straight_qrcode = detector.detectAndDecode(cv2.imdecode(image,cv2.IMREAD_COLOR))
         link = message.attachments[0].url
         return val, link
-
+"""
 #ERRORS
 @generateqr.error
 async def generateqr_error(ctx,error):
