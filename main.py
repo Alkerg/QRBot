@@ -10,6 +10,7 @@ import numpy as np
 import os
 from discord.ui import Button, View
 from discord.ext import commands
+from discord import app_commands
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -17,14 +18,25 @@ load_dotenv()
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='-', description='I can generate and read QR codes', intents=intents)
 
+#EVENTS
+@bot.event
+async def on_ready():
+    print("testbot is ready!")
+    try:
+        synced = await bot.tree.sync()
+        print(f"Synced {len(synced)} commands")
+    except Exception as error:
+        print(error)
+
 #COMMANDS
-@bot.command()
+@bot.hybrid_command(name="ping", with_app_command=True, description="Send a ping")
 async def ping(ctx):
     embed = discord.Embed(title = "¡Pong! :ping_pong:", timestamp = datetime.datetime.now(),color = discord.Color.green())
     await ctx.send(embed = embed)
 
-@bot.command(aliases=['gqr'])
-async def generateqr(ctx,*,message):
+@bot.hybrid_command(name="generateqr", with_app_command=True, description="Generate a QR code")
+@app_commands.describe(message = "What's the message?")
+async def generateqr(interaction: discord.Interaction, message: str):
     qr = qrcode.make(message)
     with io.BytesIO() as image_binary:
         qr.save(image_binary,"PNG")
@@ -34,7 +46,7 @@ async def generateqr(ctx,*,message):
         image = discord.File(fp=image_binary,filename="qr.png")
         embed.set_image(url="attachment://qr.png")
 
-        await ctx.send(embed=embed,file=image)
+        await interaction.response.send_message(embed=embed,file=image)
 """
 #EVENTS
 @bot.event
