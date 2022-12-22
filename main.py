@@ -47,7 +47,7 @@ async def generateqr(ctx:commands.Context, message: str):
         image = discord.File(fp=image_binary,filename="qr.png")
         embed.set_image(url="attachment://qr.png")
 
-        await ctx.send(embed=embed,file=image,ephemeral=True)
+        await ctx.send(embed=embed,file=image) #ephemeral=True restrinct the message just for the user use the command
 """
 #EVENTS
 @bot.event
