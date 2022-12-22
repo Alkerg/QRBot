@@ -36,7 +36,7 @@ async def ping(ctx):
 
 @bot.hybrid_command(name="generateqr", with_app_command=True, description="Generate a QR code")
 @app_commands.describe(message = "What's the message?")
-async def generateqr(interaction: discord.Interaction, message: str):
+async def generateqr(ctx:commands.Context, message: str):
     qr = qrcode.make(message)
     print(message)
     with io.BytesIO() as image_binary:
@@ -47,7 +47,7 @@ async def generateqr(interaction: discord.Interaction, message: str):
         image = discord.File(fp=image_binary,filename="qr.png")
         embed.set_image(url="attachment://qr.png")
 
-        await interaction.response.send_message(embed=embed,file=image)
+        await ctx.send(embed=embed,file=image,ephemeral=True)
 """
 #EVENTS
 @bot.event
