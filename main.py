@@ -38,6 +38,7 @@ async def ping(ctx):
 @app_commands.describe(message = "What's the message?")
 async def generateqr(interaction: discord.Interaction, message: str):
     qr = qrcode.make(message)
+    print(message)
     with io.BytesIO() as image_binary:
         qr.save(image_binary,"PNG")
         image_binary.seek(0)
