@@ -1,14 +1,8 @@
 import discord
-from PIL import Image
 import qrcode
 import datetime
 import io
-import asyncio
-#import cv2
-import urllib.request
-import numpy as np
 import os
-from discord.ui import Button, View
 from discord.ext import commands
 from discord import app_commands
 from dotenv import load_dotenv
@@ -21,7 +15,7 @@ bot = commands.Bot(command_prefix='-', description='I can generate and read QR c
 #EVENTS
 @bot.event
 async def on_ready():
-    print("testbot is ready!")
+    print("QRBot is ready!")
     try:
         synced = await bot.tree.sync()
         print(f"Synced {len(synced)} commands")
@@ -76,4 +70,4 @@ async def generateqr_error(ctx,error):
         print("No hay argumentos")
 
 if __name__ == "__main__":
-    bot.run(os.getenv('DISCORD_TOKEN'))
+    bot.run(os.environ['DISCORD_TOKEN'])
